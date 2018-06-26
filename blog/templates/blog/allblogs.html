@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../../../favicon.ico">
+
 
   <title>Tom's Blog</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
+
 
 </head>
 
@@ -33,48 +33,31 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href ="{% url 'allblogs' %}">Blog</a>
-          </li>
+
         </ul>
       </div>
     </nav>
   </header>
 
   <main role="main">
+<div class="container">
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Namaste</h1>
-        <p class="lead text-muted">Hey,welcome to my portofolio.</p>
-        <p>
-          <a href="mailto:atombombmount@gmail.com" class="btn btn-primary my-3">E-Mail</a>
 
-        </p>
-        <img src="{% static 'el james.jpg' %}" height="300" width="300" class="img-responsive" />
-      </div>
-    </section>
+  <h1 class ="text-center pt-3">WELCOME TO TOM'S BLOG</h1>
+<br>
+<br>
+<h2>Latest Post</h2>
+<hr/>
+{% for blog in blogs.all %}
+<a href="{% url 'detail' blog.id %}"><h3>{{blog.title}}</h3></a>
 
-    <div class="album py-5 bg-light ">
-      <div class="container">
-
-        <div class="row">
-            {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="{{job.image.url }}"/>
-              <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p>
-
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-        </div>
-      </div>
-    </div>
-
+{{blog.pub_date_pretty}}
+</br>
+<img class="img-fluid" src="{{blog.image.url}}" height="200" width="200">
+</br>
+<p>{{blog.summary}}</p>
+{% endfor %}
+</div>
   </main>
 
   <footer class="text-muted">
